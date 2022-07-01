@@ -14,8 +14,8 @@ const renderer = new THREE.WebGL1Renderer({
 
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
-camera.position.setZ(90)
-camera.position.setX(70)
+camera.position.setZ(-200)
+camera.position.setX(-70)
 
 renderer.render(scene, camera)
 
@@ -143,8 +143,8 @@ sun.rotation.x +=0.05
 sun.rotation.y +=0.075
 sun.rotation.z +=0.05
 
-camera.position.z= top*0.05
-camera.position.x= top*0.05
+camera.position.z= -200+top*0.05
+camera.position.x= -90+top*0.05
 
 }
 
