@@ -75,7 +75,7 @@ scene.background = spaceTexture
 const sunTexture = new THREE.TextureLoader().load('sun.jpeg')
  
 const sun = new THREE.Mesh(
-  new THREE.SphereGeometry(10, 32, 32),
+  new THREE.SphereGeometry(30, 32, 32),
   new THREE.MeshStandardMaterial({
     map: sunTexture,
     normalMap: normalTexture
@@ -83,15 +83,29 @@ const sun = new THREE.Mesh(
   )
 )
 
-
-
 scene.add(sun)
+const earthTexture = new THREE.TextureLoader().load('earth.jpg')
+ 
+const earth = new THREE.Mesh(
+  new THREE.SphereGeometry(10, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: earthTexture,
+    normalMap: normalTexture
+    }
+  )
+)
+
+earth.position.z = 50
+earth.position.x = -80
+earth.position.y = 0
+
+scene.add(earth)
 
 const moonTexture = new THREE.TextureLoader().load('moon.jpg')
 
 
 const moon = new THREE.Mesh(
-  new THREE.SphereGeometry(10, 32, 32),
+  new THREE.SphereGeometry(5, 32, 32),
   new THREE.MeshStandardMaterial({
     map: moonTexture,
     normalMap: normalTexture
@@ -99,8 +113,9 @@ const moon = new THREE.Mesh(
   )
 )
 
-moon.position.z = 30
-moon.position.x = -10
+moon.position.z = 50
+moon.position.x = -80
+moon.position.y = 0
 
 scene.add(moon)
 
@@ -134,7 +149,8 @@ camera.position.x= top*0.05
 }
 
 document.body.onscroll = moveCamera
-
+const clock = new THREE.Clock()
+let time = 0
 function animate(){
   requestAnimationFrame(animate);
 
@@ -147,7 +163,13 @@ function animate(){
   torusGray.rotation.x+=0.01;
   torusGray.rotation.y+=0.005;
   torusGray.rotation.z+=0.01;
+ 
+  earth.rotation.y+=0.01;
   
+  time = clock.getElapsedTime() * 0.1 * Math.PI;
+  moon.position.x= -80 + Math.sin(time + Math.PI * 0.5 ) * 40
+  moon.position.z= 50 + Math.cos(time + Math.PI * 0.5 ) * 40
+   
   controls.update()
   renderer.render(scene, camera)
 }
