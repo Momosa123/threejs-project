@@ -1,3 +1,4 @@
+import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js'
 import './style.css'
 import * as THREE from 'three'
 import { GridHelper, SphereBufferGeometry } from 'three'
