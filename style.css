@@ -81,3 +81,9 @@ canvas {
   .left {
     grid-column: 6 / 12;
   }
+
+  .projet-title{
+    grid-column: 2 / 8;
+    margin-bottom: 3rem;
+    font-size: 4rem;
+  }

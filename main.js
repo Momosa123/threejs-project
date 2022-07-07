@@ -53,6 +53,7 @@ const pointLight = new THREE.PointLight(0xFFFFFF)
 const ambientLight = new THREE.AmbientLight(0xFFFFFF)
 pointLight.position.set(5,5,5)
 scene.add(pointLight, ambientLight)
+
 //bloom renderer
 const renderScene = new RenderPass(scene, camera);
 const bloomPass = new UnrealBloomPass(
@@ -102,11 +103,6 @@ const spaceTexture = new THREE.TextureLoader().load('space.jpg')
 const normalTexture = new THREE.TextureLoader().load('normal.jpg')
 scene.background = spaceTexture
 
-//Custom fragment
-const customShaderMaterial = new THREE.ShaderMaterial({
-  vertexShader: vShader,
-  fragmentShader: fShader
-})
 
 
 const cubePicture = new THREE.TextureLoader().load('IMG_1904.jpg')
@@ -234,6 +230,7 @@ function animate(){
   moon.position.z= 50 + Math.cos(time + Math.PI * 0.5 ) * 40
    
   controls.update()
+  bloomComposer.render();
   renderer.render(scene, camera)
 }
 
