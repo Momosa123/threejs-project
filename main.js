@@ -2,6 +2,10 @@ import './style.css'
 import * as THREE from 'three'
 import { GridHelper, SphereBufferGeometry } from 'three'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
+import { EffectComposer } from "/node_modules/three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "/node_modules/three/examples/jsm/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
+
 const scene = new THREE.Scene()
 import vShader from './vertexShader.glsl'
 import fShader from './fragmentShader.glsl'
@@ -49,6 +53,32 @@ const pointLight = new THREE.PointLight(0xFFFFFF)
 const ambientLight = new THREE.AmbientLight(0xFFFFFF)
 pointLight.position.set(5,5,5)
 scene.add(pointLight, ambientLight)
+//bloom renderer
+const renderScene = new RenderPass(scene, camera);
+const bloomPass = new UnrealBloomPass(
+  new THREE.Vector2(window.innerWidth, window.innerHeight),
+  1.5,
+  0.4,
+  0.85
+);
+bloomPass.threshold = 0;
+bloomPass.strength = 2; //intensity of glow
+bloomPass.radius = 0;
+const bloomComposer = new EffectComposer(renderer);
+bloomComposer.setSize(window.innerWidth, window.innerHeight);
+bloomComposer.renderToScreen = true;
+bloomComposer.addPass(renderScene);
+bloomComposer.addPass(bloomPass);
+
+// const color = new THREE.Color("#FDB813");
+const Icogeometry = new THREE.IcosahedronGeometry(10, 15);
+const Icomaterial = new THREE.MeshStandardMaterial({ color: 0xFDB813 });
+const sphere = new THREE.Mesh(Icogeometry, Icomaterial);
+sphere.position.z = 0
+sphere.position.x = 0
+sphere.position.y = 0
+// sphere.layers.set(10);
+scene.add(sphere);
 
 const lightHelper = new THREE.PointLightHelper(pointLight)
 const gridHelper = new THREE.GridHelper(200, 50)
@@ -87,16 +117,17 @@ const cubeMesh = new THREE.Mesh(
     }
   )
 )
-const sunTexture = new THREE.TextureLoader().load('sun.jpeg')
+
  
 
 cubeMesh.position.z = 150
 cubeMesh.position.x = -250
-cubeMesh.position.y = 150
+cubeMesh.position.y = 130
 
 scene.add(cubeMesh)
 
 //adding the sun
+const sunTexture = new THREE.TextureLoader().load('sun.jpeg')
 const sun = new THREE.Mesh(
   new THREE.SphereGeometry(30, 32, 32),
   new THREE.MeshStandardMaterial({
@@ -107,7 +138,12 @@ const sun = new THREE.Mesh(
 )
 
 
-scene.add(sun)
+// scene.add(sun)
+
+//add glowing sun
+
+
+
 const earthTexture = new THREE.TextureLoader().load('earth.jpg')
  
 const earth = new THREE.Mesh(
@@ -202,3 +238,4 @@ function animate(){
 }
 
 animate()
+

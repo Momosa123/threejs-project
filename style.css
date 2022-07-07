@@ -60,7 +60,9 @@ canvas {
     line-height: 1.5;
     margin-bottom: var(--spacing);
   }
-
+  .grand-section{
+    grid-column: 2/12;
+  }
   blockquote {
     margin: 0;
     padding: 0;
