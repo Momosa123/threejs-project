@@ -87,3 +87,15 @@ canvas {
     margin-bottom: 3rem;
     font-size: 4rem;
   }
+
+ .reseau{
+  color: #fff;
+  text-decoration: none;
+ }
+
+ .reseau:hover{
+  text-decoration: underline;
+ }
+  .fab{
+    margin-right: 1rem;
+  }

@@ -33,6 +33,16 @@ torusOrange.position.x = xSaturne
 torusOrange.position.y = ysaturne
 scene.add(torusOrange)
 
+
+const otherGeometryOrange = new THREE.TorusGeometry(600, 30, 100, 100)
+
+const otherTorusOrange = new THREE.Mesh(otherGeometryOrange, materialOrange)
+otherTorusOrange.position.z = -50
+otherTorusOrange.position.x = 0
+otherTorusOrange.position.y = -100
+scene.add(otherTorusOrange)
+
+
 const geometryBlue = new THREE.TorusGeometry(14, 0.75, 2, 100)
 const materialBlue = new THREE.MeshStandardMaterial({color:0x189AB4})
 const torusBlue  = new THREE.Mesh(geometryBlue, materialBlue)
@@ -55,31 +65,31 @@ pointLight.position.set(5,5,5)
 scene.add(pointLight, ambientLight)
 
 //bloom renderer
-const renderScene = new RenderPass(scene, camera);
-const bloomPass = new UnrealBloomPass(
-  new THREE.Vector2(window.innerWidth, window.innerHeight),
-  1.5,
-  0.4,
-  0.85
-);
-bloomPass.threshold = 0;
-bloomPass.strength = 2; //intensity of glow
-bloomPass.radius = 0;
-const bloomComposer = new EffectComposer(renderer);
-bloomComposer.setSize(window.innerWidth, window.innerHeight);
-bloomComposer.renderToScreen = true;
-bloomComposer.addPass(renderScene);
-bloomComposer.addPass(bloomPass);
+// const renderScene = new RenderPass(scene, camera);
+// const bloomPass = new UnrealBloomPass(
+//   new THREE.Vector2(window.innerWidth, window.innerHeight),
+//   1.5,
+//   0.4,
+//   0.85
+// );
+// bloomPass.threshold = 0;
+// bloomPass.strength = 2; //intensity of glow
+// bloomPass.radius = 0;
+// const bloomComposer = new EffectComposer(renderer);
+// bloomComposer.setSize(window.innerWidth, window.innerHeight);
+// bloomComposer.renderToScreen = true;
+// bloomComposer.addPass(renderScene);
+// bloomComposer.addPass(bloomPass);
 
-// const color = new THREE.Color("#FDB813");
-const Icogeometry = new THREE.IcosahedronGeometry(10, 15);
-const Icomaterial = new THREE.MeshStandardMaterial({ color: 0xFDB813 });
-const sphere = new THREE.Mesh(Icogeometry, Icomaterial);
-sphere.position.z = 0
-sphere.position.x = 0
-sphere.position.y = 0
-// sphere.layers.set(10);
-scene.add(sphere);
+// // const color = new THREE.Color("#FDB813");
+// const Icogeometry = new THREE.IcosahedronGeometry(10, 15);
+// const Icomaterial = new THREE.MeshStandardMaterial({ color: 0xFDB813 });
+// const sphere = new THREE.Mesh(Icogeometry, Icomaterial);
+// sphere.position.z = 0
+// sphere.position.x = 0
+// sphere.position.y = 0
+// // sphere.layers.set(10);
+// scene.add(sphere);
 
 const lightHelper = new THREE.PointLightHelper(pointLight)
 const gridHelper = new THREE.GridHelper(200, 50)
@@ -125,7 +135,7 @@ scene.add(cubeMesh)
 //adding the sun
 const sunTexture = new THREE.TextureLoader().load('sun.jpeg')
 const sun = new THREE.Mesh(
-  new THREE.SphereGeometry(30, 32, 32),
+  new THREE.SphereGeometry(70, 32, 32),
   new THREE.MeshStandardMaterial({
     map: sunTexture,
     normalMap: normalTexture
@@ -134,7 +144,7 @@ const sun = new THREE.Mesh(
 )
 
 
-// scene.add(sun)
+scene.add(sun)
 
 //add glowing sun
 
@@ -219,6 +229,7 @@ function animate(){
   torusGray.rotation.y+=0.005;
   torusGray.rotation.z+=0.01;
 
+  otherTorusOrange.rotation.y+=0.005;
   cubeMesh.rotation.x+=0.01;
   cubeMesh.rotation.y+=0.005;
   cubeMesh.rotation.z+=0.01;
@@ -230,7 +241,7 @@ function animate(){
   moon.position.z= 50 + Math.cos(time + Math.PI * 0.5 ) * 40
    
   controls.update()
-  bloomComposer.render();
+  // bloomComposer.render();
   renderer.render(scene, camera)
 }
 
