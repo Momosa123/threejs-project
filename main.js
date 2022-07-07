@@ -7,8 +7,8 @@ import { RenderPass } from "/node_modules/three/examples/jsm/postprocessing/Rend
 import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
 
 const scene = new THREE.Scene()
-import vShader from './vertexShader.glsl'
-import fShader from './fragmentShader.glsl'
+import vShader from '../vertexShader.glsl'
+import fShader from '../fragmentShader.glsl'
 const xSaturne= 500
 const zSaturne = 0
 const ysaturne = 250
