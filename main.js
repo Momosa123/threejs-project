@@ -1,14 +1,11 @@
 import './style.css'
 import * as THREE from 'three'
-import { GridHelper, SphereBufferGeometry } from 'three'
+
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
-import { EffectComposer } from "/node_modules/three/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "/node_modules/three/examples/jsm/postprocessing/RenderPass.js";
-import { UnrealBloomPass } from "/node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
+
 
 const scene = new THREE.Scene()
-import vShader from '../vertexShader.glsl'
-import fShader from '../fragmentShader.glsl'
+
 const xSaturne= 500
 const zSaturne = 0
 const ysaturne = 250

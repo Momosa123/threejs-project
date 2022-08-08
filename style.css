@@ -93,9 +93,16 @@ canvas {
   text-decoration: none;
  }
 
- .reseau:hover{
+ a:hover,.reseau:hover{
   text-decoration: underline;
  }
   .fab{
     margin-right: 1rem;
   }
+
+  a h5, a{
+    color: #fff;
+    text-decoration: none;
+  }
+
+  
