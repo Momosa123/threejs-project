@@ -106,13 +106,13 @@ function addStar(){
 
 // Array(300).fill().forEach(addStar)
 
-const spaceTexture = new THREE.TextureLoader().load('space.jpg')
-const normalTexture = new THREE.TextureLoader().load('normal.jpg')
+const spaceTexture = new THREE.TextureLoader().load('assets/space.jpg')
+const normalTexture = new THREE.TextureLoader().load('assets/normal.jpg')
 scene.background = spaceTexture
 
 
 
-const cubePicture = new THREE.TextureLoader().load('IMG_1904.jpg')
+const cubePicture = new THREE.TextureLoader().load('assets/IMG_1904.jpg')
 const cubeMesh = new THREE.Mesh(
   new THREE.BoxGeometry(60,60,60),
   new THREE.MeshStandardMaterial({
@@ -147,7 +147,7 @@ scene.add(sun)
 
 
 
-const earthTexture = new THREE.TextureLoader().load('earth.jpg')
+const earthTexture = new THREE.TextureLoader().load('assets/earth.jpg')
  
 const earth = new THREE.Mesh(
   new THREE.SphereGeometry(10, 32, 32),
@@ -163,7 +163,7 @@ earth.position.y = 0
 
 scene.add(earth)
 
-const moonTexture = new THREE.TextureLoader().load('moon.jpg')
+const moonTexture = new THREE.TextureLoader().load('assets/moon.jpg')
 
 
 const moon = new THREE.Mesh(
@@ -181,7 +181,7 @@ moon.position.y = 0
 
 scene.add(moon)
 
-const saturneTexture = new THREE.TextureLoader().load('saturne.jpg')
+const saturneTexture = new THREE.TextureLoader().load('assets/saturne.jpg')
 
 
 const saturne = new THREE.Mesh(
